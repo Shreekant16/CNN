@@ -3,7 +3,7 @@ import numpy as np
 import os
 import csv
 
-attendence = []
+attendence__ = []
 info = {}
 
 cap = cv.VideoCapture(0)
@@ -23,7 +23,7 @@ while True:
         face_ir = gray[y:y+h, x:x+w]
         label, confidence = recognizer.predict(face_ir)
     info = {'Student':students[label],'Attendence':'Present'}
-    attendence.append(info)
+    attendence__.append(info)
         # cv.rectangle(Frame,(x,y),(x+w,y+h),(0,2550,0),1)
     # cv.imshow('Student', Frame)
 
@@ -40,4 +40,4 @@ column_names = ['Students', 'Attendence']
 with open('attendence.csv') as attendence_sheet:
     writer = csv.DictWriter(attendence_sheet, fieldnames=column_names)
     writer.writeheader()
-    writer.writerows(info)
+    writer.writerows(attendence__)
